@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Página de Inicio</title>
+  <style>
+    html {
+      scroll-behavior: smooth;
+      box-sizing: border-box;
+    }
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
+
+    body {
+      margin: 0;
+      font-family: fantasy;
+      color: rgb(35, 49, 11);
+      display: flex;
+      min-height: 100vh;
+      flex-direction: row;
+      background: #f9f9f9;
+    }
+
+    .menu-lateral {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 220px;
+      height: 100vh;
+      background-color: #3e4e2c;
+      padding-top: 20px;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+      z-index: 999;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .menu-lateral a {
+      display: block;
+      color: white;
+      padding: 12px 20px;
+      text-decoration: none;
+      font-size: 18px;
+      width: 100%;
+      text-align: center;
+      transition: background-color 0.3s ease;
+      margin-bottom: 8px;
+    }
+
+    .menu-lateral a:hover {
+      background-color: #5e6e3d;
+    }
+
+    .menu-lateral a img {
+      max-width: 90%;
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+
+    .contenido {
+      margin-left: 220px;
+      padding: 20px;
+      flex: 1;
+      max-width: calc(100% - 220px);
+      overflow-x: hidden;
+    }
+
+    .encabezado {
+      background-image: url('https://www.bbva.com/wp-content/uploads/2021/09/BBVA-biotecnologi%CC%81a-agri%CC%81cola-sostenibilidad-cultivo-agricultura-innovacion-terrenos.jpg');
+      background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+      padding: 60px 20px 40px;
+      text-align: center;
+      color: white;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+    }
+
+    .encabezado h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .encabezado h4 {
+      margin-bottom: 20px;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      font-weight: 500;
+    }
+
+    .encabezado a {
+      padding: 12px 24px;
+      background-color: olive;
+      color: darkgreen;
+      text-decoration: none;
+      font-size: 18px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0);
+      display: inline-block;
+    }
+
+    .encabezado a:hover {
+      background-color: #c0c0c0;
+      box-shadow: 0 0 15px yellowgreen;
+      color: black;
+    }
+
+    #seccion-inferior {
+      min-height: 100vh;
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #333;
+      font-size: 1.5rem;
+      font-family: Arial, sans-serif;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .galeria {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+      max-width: 100%;
+    }
+
+    .cuadro {
+      border: 2px solid #cdd3a3;
+      border-radius: 15px;
+      width: 200px;
+      padding: 10px;
+      text-align: center;
+      background-color: #fafafa;
+      box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .cuadro:hover {
+      transform: scale(1.05);
+      border-color: olive;
+    }
+
+    .cuadro img {
+      width: 100%;
+      border-radius: 10px;
+      height: 140px;
+      object-fit: cover;
+    }
+
+    .volver {
+      margin-top: 40px;
+    }
+
+    .volver a {
+      padding: 10px 20px;
+      background-color: olive;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+      display: inline-block;
+    }
+
+    .volver a:hover {
+      background-color: #556b2f;
+    }
+
+    form input, form textarea, form button {
+      max-width: 100%;
+      font-size: 1rem;
+    }
+
+    form input, form textarea {
+      padding: 10px;
+      width: 300px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      resize: vertical;
+    }
+
+    form button {
+      padding: 10px 20px;
+      background-color: olive;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    form button:hover {
+      background-color: #556b2f;
+    }
+
+ 
+    @media (max-width: 1024px) {
+      .menu-lateral {
+        width: 150px;
+      }
+      .contenido {
+        margin-left: 150px;
+        max-width: calc(100% - 150px);
+        padding: 15px;
+      }
+
+      .encabezado h1 {
+        font-size: 2.5rem;
+      }
+
+      #seccion-inferior {
+        font-size: 1.3rem;
+        padding: 30px 15px;
+      }
+
+      form input, form textarea {
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+      .menu-lateral {
+        position: relative;
+        width: 100%;
+        height: auto;
+        box-shadow: none;
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 10px 0;
+        justify-content: center;
+      }
+
+      .menu-lateral a {
+        font-size: 16px;
+        padding: 10px 12px;
+        margin: 0 8px;
+        white-space: nowrap;
+      }
+
+      .menu-lateral a img {
+        max-width: 60px;
+        margin-bottom: 0;
+      }
+
+      .contenido {
+        margin-left: 0;
+        max-width: 100%;
+        padding: 20px 10px 40px;
+      }
+
+      .encabezado h1 {
+        font-size: 2rem;
+      }
+
+      .encabezado h4 {
+        font-size: 1.2rem;
+      }
+
+      #seccion-inferior {
+        font-size: 1.1rem;
+        padding: 20px 10px;
+      }
+
+      .cuadro {
+        width: 140px;
+        padding: 8px;
+      }
+
+      .cuadro img {
+        height: 100px;
+      }
+
+      form input, form textarea {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .menu-lateral a {
+        font-size: 14px;
+        padding: 8px 10px;
+      }
+
+      .encabezado h1 {
+        font-size: 1.6rem;
+      }
+
+      .encabezado h4 {
+        font-size: 1rem;
+      }
+
+      #seccion-inferior {
+        font-size: 1rem;
+        padding: 15px 10px;
+      }
+
+      .cuadro {
+        width: 120px;
+      }
+
+      .cuadro img {
+        height: 90px;
+      }
+    }
+
+
+    h3, p {
+      text-align: right;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="menu-lateral">
+    <a href="#inicio">Inicio</a>
+    <a href="#seccion-inferior">Información</a>
+    <a href="#contacto">Contáctanos</a>
+    <a href="Conceptosclave.HTML" target="_blank">
+      <img src="https://img.interempresas.net/fotos/2987910.jpeg" alt="Conceptos clave" />
+    </a>
+    <a href="Beneficios.html" target="_blank">
+      <img src="https://cdn.pixabay.com/animation/2022/11/15/11/37/11-37-03-576_512.gif" alt="Beneficios" />
+    </a>
+    <a href="https://youtu.be/UlxKfKjEVhY?si=ERL58jXN4w4ZYu5f">Video</a>
+    <a href="https://herograespeciales.com/la-importancia-de-la-biotecnologia-en-la-agricultura/">Importancia</a>
+  </nav>
+
+  <div class="contenido">
+    <div class="encabezado" id="inicio">
+      <h1><b>Bienvenidos</b></h1>
+      <h4><b><i>Biotecnología en Agricultura</i></b></h4>
+      <a href="#seccion-inferior">Iniciar</a>
+    </div>
+
+    <div id="seccion-inferior">
+      <h2 style="color:olive;"><b>¿Qué es la biotecnología agrícola?</b></h2>
+      <p style="font-family:inherit;color: rgb(77, 40, 4);">
+        Todo uso de organismos vivos o compuestos obtenidos a partir de entes vivos para crear o modificar productos con fines diversos se considera biotecnología. Y desde los orígenes de la historia ha sido empleada por el hombre en asuntos como la producción de vinos, quesos, yogures o panes, que implican el uso de bacterias o levaduras para transformar un producto natural en otro fermentado. La biotecnología moderna implica, además, la manipulación de las moléculas de ADN de los elementos implicados.
+
+        La biotecnología agrícola, según el Convenio sobre la Diversidad Biológica (CDB), abarca todo proceso tecnológico que emplea sistemas biológicos y organismos vivos para crear o modificar productos y procesos con fines específicos. Esto incluye no solo aplicaciones médicas e industriales, sino también herramientas comunes en la agricultura y la producción alimentaria.
+        
+        Máster de Formación Permanente en Transformación Digital e Innovación del Sector Agroalimentario
+      </p>
+
+      <h1 style="color: rgb(58, 92, 23); font-family: Georgia, 'Times New Roman', Times, serif;">
+        <center><b>Galería de Fotos</b></center>
+      </h1>
+      
+      <div class="galeria">
+        <div class="cuadro"><img src="https://croper.com/comunidad/wp-content/uploads/2025/04/Mejoramiento-genetico-de-las-plantas.jpg" alt="Imagen 1"><p>Mejoramiento genético</p></div>
+        <div class="cuadro"><img src="https://www.enpositivo.com/wp-content/uploads/2014/06/microorganismos-salud-bienestar.jpg" alt="Imagen 2"><p>Microorganismos beneficiosos</p></div>
+        <div class="cuadro"><img src="https://perfectdailygrind.com/es/wp-content/uploads/sites/2/2022/06/image5-3.png" alt="Imagen 3"><p>Producción de biofertilizantes</p></div>
+        <div class="cuadro"><img src="https://elfuturoentumesa.eu/wp-content/uploads/2023/12/Alimentos-transgenicos-y-OGM.jpg" alt="Imagen 4"><p>Alimentos genéticamente modificados (OGM)</p></div>
+        <div class="cuadro"><img src="https://img.freepik.com/foto-gratis/agricultor-rociar-verduras-jardin-herbicidas-hombre-delantal-negro_1157-39707.jpg?semt=ais_hybrid&w=740" alt="Imagen 5"><p>Biopesticidas</p></div>
+        <div class="cuadro"><img src="https://www.asebio.com/sites/default/files/2024-06/Biotecnolog%C3%ADa_medioambiente_AseBio_0.jpg" alt="Imagen 6"><p>Aumento de la productividad</p></div>
+      </div>
+
+      <div id="contacto" style="margin-top: 80px; width: 100%;">
+        <h2 style="color: olive; font-family: Georgia, 'Times New Roman', Times, serif;"><b>Contáctanos para más información</b></h2>
+        <form style="display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 20px; width: 100%;">
+          <input type="text" placeholder="Nombre" required />
+          <input type="text" placeholder="Apellido" required />
+          <input type="email" placeholder="Correo Gmail" pattern=".+@gmail\.com" required />
+          <textarea placeholder="Escribe tu problema o consulta aquí..." required></textarea>
+          <button type="submit">Enviar</button>
+        </form>
+      </div>
+
+      <div class="volver">
+        <a href="#inicio">Volver al inicio</a>
+      </div>
+    </div>
+
+    <h3 style="color: olive; font-family: Georgia, 'Times New Roman', Times, serif;">Creditos: Duarte Balderas Silvia Rocio</h3>
+    <h3 style="color: rgb(54, 105, 7); font-family: Georgia, 'Times New Roman', Times, serif;">Ultima Actualizacion: 13 de Junio del 2025</h3>
+    <h3 style="color: rgb(115, 138, 34); font-family: Georgia, 'Times New Roman', Times, serif;">Conclusion personal en el desarrollo de la pagina:</h3>
+    <p style="color:black; font-family: Arial, Helvetica, sans-serif;">
+      La verdad, hacer esta página fue una experiencia bastante divertida. Empezó con algo sencillo, pero poco a poco fue tomando forma y se volvió más interesante con cada detalle que se le agregó. El menú lateral fijo con scroll, las secciones bien marcadas, la galería de imágenes y hasta el formulario de contacto hacen que se vea más profesional, pero sin perder ese toque personal. Lo mejor fue ver cómo todo va funcionando bien junto, desde el diseño limpio hasta los enlaces y la navegación suave. Aunque hay cosas que siempre se pueden mejorar o hacer más interactivas, siento que esta página cumple su objetivo y además se ve bien. En resumen, fue divertido armarla y me dejó con ganas de seguir aprendiendo más de diseño web.
+    </p>
+    <h3 style="color: rgb(41, 71, 29); font-family: Georgia, 'Times New Roman', Times, serif;">Paginas consultadas:</h3>
+    <p style="color:black; font-family: Arial, Helvetica, sans-serif;">
+      https://herograespeciales.com/la-importancia-de-la-biotecnologia-en-la-agricultura/
+    </p>
+    <p style="color:black; font-family: Arial, Helvetica, sans-serif;">
+      https://www.fao.org/4/y5160s/y5160s07.htm
+    </p>
+  </div>
+
+</body>
+</html>
+
+
+
+
